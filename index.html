@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Happy 24th, Nmeso 💜</title>
+  <meta name="description" content="A little birthday surprise for Nwabueze Nmesoma Faith." />
+  <meta property="og:title" content="Happy 24th, Nmeso 💜" />
+  <meta property="og:description" content="Someone made you a birthday surprise. Open it 💌" />
+  <meta name="theme-color" content="#3b0a4f" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💜</text></svg>" />
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fredericka+the+Great&family=Great+Vibes&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="locked">
+
+  <!-- Shared SVG defs (patterns used by bunting, cake, etc.) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <pattern id="ging" width="10" height="10" patternUnits="userSpaceOnUse">
+        <rect width="10" height="10" fill="#fdfbff" />
+        <rect width="5" height="10" fill="#7b2cbf" opacity=".45" />
+        <rect width="10" height="5" fill="#7b2cbf" opacity=".45" />
+      </pattern>
+      <pattern id="stripe" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(35)">
+        <rect width="8" height="8" fill="#fdfbff" />
+        <rect width="4" height="8" fill="#9d4edd" />
+      </pattern>
+      <radialGradient id="disco" cx="35%" cy="30%" r="75%">
+        <stop offset="0" stop-color="#fdfbff" />
+        <stop offset=".45" stop-color="#c8b6ff" />
+        <stop offset="1" stop-color="#3b0a4f" />
+      </radialGradient>
+      <symbol id="heart" viewBox="0 0 24 24">
+        <path d="M12 21s-7.5-4.6-9.6-9.3C.9 8.3 3 4.5 6.6 4.5c2.2 0 3.6 1.3 5.4 3.3 1.8-2 3.2-3.3 5.4-3.3 3.6 0 5.7 3.8 4.2 7.2C19.5 16.4 12 21 12 21z" />
+      </symbol>
+      <symbol id="star" viewBox="0 0 24 24">
+        <path d="M12 1.5l3.1 6.9 7.4.7-5.6 5 1.7 7.4L12 17.6l-6.6 3.9 1.7-7.4-5.6-5 7.4-.7z" />
+      </symbol>
+      <symbol id="balloon" viewBox="0 0 40 92">
+        <path class="b-body" d="M20 2C32 2 38 13 38 24c0 14-11 24-18 26C13 48 2 38 2 24 2 13 8 2 20 2z" />
+        <path class="b-knot" d="M16.5 50.5 20 55l3.5-4.5z" />
+        <path class="b-string" d="M20 55q-6 9 0 18t0 18" />
+        <ellipse class="b-shine" cx="12" cy="16" rx="3.2" ry="6" transform="rotate(25 12 16)" />
+      </symbol>
+      <symbol id="bow" viewBox="0 0 64 44">
+        <path d="M32 18C20 2 3 4 7 18c-4 14 13 16 25 0z" />
+        <path d="M32 18C44 2 61 4 57 18c4 14-13 16-25 0z" />
+        <path d="M29 21l-9 20 7-2 3 5 2-21zM35 21l9 20-7-2-3 5-2-21z" />
+        <circle cx="32" cy="19" r="5.5" />
+      </symbol>
+      <symbol id="sparkle" viewBox="0 0 24 24">
+        <path d="M12 0c.8 6.4 4.6 11.2 12 12-7.4.8-11.2 5.6-12 12-.8-6.4-4.6-11.2-12-12 7.4-.8 11.2-5.6 12-12z" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="sky" aria-hidden="true"></div>
+
+  <!-- ============ GATE ============ -->
+  <div class="gate" id="gate">
+    <div class="gate-card">
+      <svg class="gate-env" viewBox="0 0 120 80" aria-hidden="true">
+        <rect x="3" y="3" width="114" height="74" rx="6" />
+        <path d="M3 9 L60 46 L117 9" />
+        <use href="#heart" x="47" y="33" width="26" height="26" class="gate-seal" />
+      </svg>
+      <p class="gate-hey">Hey Nmeso…</p>
+      <p class="gate-sub">Omozusi made you something.</p>
+      <button class="btn btn-solid" id="gateBtn" type="button">Open it</button>
+    </div>
+  </div>
+
+  <main>
+    <!-- ============ HERO / CAKE ============ -->
+    <section class="hero" id="top">
+      <div class="paper hero-paper">
+        <svg class="ribbon ribbon-tl" viewBox="0 0 200 200" aria-hidden="true"><path d="M-10 150 C 40 60, 10 20, 80 30 S 150 -20, 210 10" /></svg>
+        <svg class="ribbon ribbon-br" viewBox="0 0 200 200" aria-hidden="true"><path d="M-10 190 C 50 170, 60 120, 120 140 S 170 90, 210 60" /></svg>
+
+        <svg class="bunting bunting-l" viewBox="0 0 300 90" aria-hidden="true">
+          <path class="string" d="M0 10 Q150 70 300 10" />
+          <g class="flag"><polygon points="24.5,23.1 50.5,23.1 37.5,57" fill="#7b2cbf" /></g>
+          <g class="flag"><polygon points="62,32.5 88,32.5 75,66.5" fill="url(#ging)" /></g>
+          <g class="flag"><polygon points="99.5,38.1 125.5,38.1 112.5,72" fill="#c8b6ff" /></g>
+          <g class="flag"><polygon points="137,40 163,40 150,74" fill="#7b2cbf" /></g>
+          <g class="flag"><polygon points="174.5,38.1 200.5,38.1 187.5,72" fill="url(#ging)" /></g>
+          <g class="flag"><polygon points="212,32.5 238,32.5 225,66.5" fill="#c8b6ff" /></g>
+          <g class="flag"><polygon points="249.5,23.1 275.5,23.1 262.5,57" fill="#7b2cbf" /></g>
+        </svg>
+        <svg class="bunting bunting-r" viewBox="0 0 300 90" aria-hidden="true">
+          <path class="string" d="M0 10 Q150 70 300 10" />
+          <g class="flag"><polygon points="24.5,23.1 50.5,23.1 37.5,57" fill="url(#ging)" /></g>
+          <g class="flag"><polygon points="62,32.5 88,32.5 75,66.5" fill="#c8b6ff" /></g>
+          <g class="flag"><polygon points="99.5,38.1 125.5,38.1 112.5,72" fill="#7b2cbf" /></g>
+          <g class="flag"><polygon points="137,40 163,40 150,74" fill="url(#ging)" /></g>
+          <g class="flag"><polygon points="174.5,38.1 200.5,38.1 187.5,72" fill="#c8b6ff" /></g>
+          <g class="flag"><polygon points="212,32.5 238,32.5 225,66.5" fill="#7b2cbf" /></g>
+          <g class="flag"><polygon points="249.5,23.1 275.5,23.1 262.5,57" fill="url(#ging)" /></g>
+        </svg>
+
+        <!-- floating decorations -->
+        <svg class="deco d-heart1" aria-hidden="true"><use href="#heart" /></svg>
+        <svg class="deco d-heart2" aria-hidden="true"><use href="#heart" /></svg>
+        <svg class="deco d-heart3" aria-hidden="true"><use href="#heart" /></svg>
+        <svg class="deco d-spark1" aria-hidden="true"><use href="#sparkle" /></svg>
+        <svg class="deco d-spark2" aria-hidden="true"><use href="#sparkle" /></svg>
+        <svg class="deco d-star1" aria-hidden="true"><use href="#star" /></svg>
+        <svg class="deco d-star2" aria-hidden="true"><use href="#star" /></svg>
+        <svg class="deco d-disco" viewBox="0 0 60 60" aria-hidden="true">
+          <line x1="30" y1="-40" x2="30" y2="8" stroke="#3b0a4f" stroke-width="1.5" />
+          <circle cx="30" cy="32" r="24" fill="url(#disco)" />
+          <g stroke="#fdfbff" stroke-opacity=".55" stroke-width=".8" fill="none">
+            <ellipse cx="30" cy="32" rx="24" ry="8" /><ellipse cx="30" cy="32" rx="24" ry="16" />
+            <ellipse cx="30" cy="32" rx="8" ry="24" /><ellipse cx="30" cy="32" rx="16" ry="24" />
+            <line x1="6" y1="32" x2="54" y2="32" /><line x1="30" y1="8" x2="30" y2="56" />
+          </g>
+        </svg>
+
+        <svg class="deco deco-bow bow-l" aria-hidden="true"><use href="#bow" /></svg>
+        <svg class="deco deco-bow bow-r" aria-hidden="true"><use href="#bow" /></svg>
+        <svg class="deco sticker" viewBox="0 0 80 80" aria-hidden="true">
+          <g class="st-edge"><circle cx="40" cy="40" r="28" /><circle cx="67.0" cy="40.0" r="6.5" /><circle cx="65.4" cy="49.2" r="6.5" /><circle cx="60.7" cy="57.4" r="6.5" /><circle cx="53.5" cy="63.4" r="6.5" /><circle cx="44.7" cy="66.6" r="6.5" /><circle cx="35.3" cy="66.6" r="6.5" /><circle cx="26.5" cy="63.4" r="6.5" /><circle cx="19.3" cy="57.4" r="6.5" /><circle cx="14.6" cy="49.2" r="6.5" /><circle cx="13.0" cy="40.0" r="6.5" /><circle cx="14.6" cy="30.8" r="6.5" /><circle cx="19.3" cy="22.6" r="6.5" /><circle cx="26.5" cy="16.6" r="6.5" /><circle cx="35.3" cy="13.4" r="6.5" /><circle cx="44.7" cy="13.4" r="6.5" /><circle cx="53.5" cy="16.6" r="6.5" /><circle cx="60.7" cy="22.6" r="6.5" /><circle cx="65.4" cy="30.8" r="6.5" /></g>
+          <circle cx="40" cy="40" r="24" class="st-ring" />
+          <text x="40" y="38" class="st-hbd">HBD</text>
+          <text x="40" y="56" class="st-num">24</text>
+        </svg>
+        <svg class="deco balloons" viewBox="0 0 96 140" aria-hidden="true">
+          <g class="bal bal-1"><use href="#balloon" x="2" y="22" width="40" height="92" /></g>
+          <g class="bal bal-2"><use href="#balloon" x="30" y="0" width="40" height="92" /></g>
+          <g class="bal bal-3"><use href="#balloon" x="54" y="30" width="40" height="92" /></g>
+        </svg>
+        <svg class="deco balloon-solo" viewBox="0 0 40 92" aria-hidden="true"><g class="bal"><use href="#balloon" /></g></svg>
+        <figure class="deco mini-pol mini-pol-l" aria-hidden="true"><span class="tape"></span><img src="assets/nmeso-2.jpg" alt="" /></figure>
+        <figure class="deco mini-pol mini-pol-r" aria-hidden="true"><span class="tape"></span><img src="assets/nmeso-3.jpg" alt="" /></figure>
+        <svg class="deco camera" viewBox="0 0 64 50" aria-hidden="true">
+          <rect x="3" y="10" width="58" height="37" rx="6" />
+          <rect x="9" y="4" width="14" height="8" rx="2" />
+          <circle cx="34" cy="28" r="12" /><circle cx="34" cy="28" r="6.5" class="cam-lens" />
+          <rect x="49" y="15" width="7" height="5" rx="1.5" class="cam-flash" />
+          <path d="M3 22h19M46 22h15" />
+        </svg>
+        <svg class="deco doodle squiggle-1" viewBox="0 0 60 16" aria-hidden="true"><path d="M2 8q5-8 10 0t10 0 10 0 10 0 10 0" /></svg>
+        <svg class="deco doodle squiggle-2" viewBox="0 0 60 16" aria-hidden="true"><path d="M2 8q5-8 10 0t10 0 10 0 10 0 10 0" /></svg>
+        <svg class="deco doodle swirl" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 20c0-2 3-2 3 0 0 4-6 4-6 0 0-6 9-6 9 0 0 8-12 8-12 0 0-10 15-10 15 0 0 11-17 12-18 1" /></svg>
+        <svg class="deco dots dots-1" viewBox="0 0 40 30" aria-hidden="true"><circle cx="6" cy="8" r="3" /><circle cx="20" cy="20" r="2.2" /><circle cx="33" cy="6" r="2.6" /></svg>
+        <svg class="deco dots dots-2" viewBox="0 0 40 30" aria-hidden="true"><circle cx="6" cy="20" r="2.4" /><circle cx="22" cy="8" r="3" /><circle cx="34" cy="22" r="2" /></svg>
+        <svg class="deco d-heart4" aria-hidden="true"><use href="#heart" /></svg>
+        <svg class="deco d-spark3" aria-hidden="true"><use href="#sparkle" /></svg>
+        <svg class="deco d-star3" aria-hidden="true"><use href="#star" /></svg>
+
+        <div class="hero-content">
+          <h1 class="hb-title"><span>Happy Birthday</span></h1>
+          <p class="hb-name">Nmeso</p>
+          <p class="hb-wish" id="wishText">MAKE A WISH!!</p>
+          <div class="blow-wrap"><button class="btn btn-pill" id="blowBtn" type="button"><span aria-hidden="true">≋</span> BLOW THE CANDLES</button></div>
+
+          <div class="cake-wrap">
+            <svg class="cake" id="cake" viewBox="0 0 300 290" aria-label="Birthday cake with candles">
+              <g class="smoke-group">
+                <path class="smoke s1" d="M120 66 q-6 -10 0 -20 q6 -10 0 -20" />
+                <path class="smoke s2" d="M150 56 q-6 -10 0 -20 q6 -10 0 -20" />
+                <path class="smoke s3" d="M180 66 q-6 -10 0 -20 q6 -10 0 -20" />
+              </g>
+              <!-- plate -->
+              <ellipse cx="150" cy="268" rx="132" ry="14" class="ln" fill="#fdfbff" />
+              <!-- bottom tier -->
+              <path class="ln" fill="#fdfbff" d="M42 190 v62 q108 26 216 0 v-62" />
+              <ellipse cx="150" cy="190" rx="108" ry="15" class="ln" fill="#f4edff" />
+              <path class="ln" fill="none" d="M46 206 q11 12 22 0 q11 12 22 0 q11 12 22 0 q11 12 22 0 q11 12 22 0 q11 12 22 0 q11 12 22 0 q11 12 22 0 q11 12 22 0 q11 12 22 0" />
+              <!-- hearts on bottom tier -->
+              <use href="#heart" class="cake-heart" x="72" y="230" width="16" height="16" />
+              <use href="#heart" class="cake-heart" x="212" y="230" width="16" height="16" />
+              <text x="150" y="252" class="cake-24">24</text>
+              <!-- top tier -->
+              <path class="ln" fill="#fdfbff" d="M82 132 v54 q68 14 136 0 v-54" />
+              <ellipse cx="150" cy="132" rx="68" ry="11" class="ln" fill="#f4edff" />
+              <path class="ln" fill="none" d="M84 150 q11 10 22 0 q11 10 22 0 q11 10 22 0 q11 10 22 0 q11 10 22 0 q11 10 22 0" />
+              <!-- bows -->
+              <g class="ln bow" fill="#c8b6ff"><path d="M42 205 q-22 -14 -18 6 q4 14 18 -6z" /><path d="M42 205 q-10 22 4 22" fill="none" /></g>
+              <g class="ln bow" fill="#c8b6ff"><path d="M258 205 q22 -14 18 6 q-4 14 -18 -6z" /><path d="M258 205 q10 22 -4 22" fill="none" /></g>
+              <!-- candles -->
+              <g class="candle"><rect x="114" y="84" width="12" height="46" rx="2" fill="url(#stripe)" class="ln" /><line x1="120" y1="84" x2="120" y2="76" class="ln" /></g>
+              <g class="candle"><rect x="144" y="74" width="12" height="54" rx="2" fill="url(#stripe)" class="ln" /><line x1="150" y1="74" x2="150" y2="66" class="ln" /></g>
+              <g class="candle"><rect x="174" y="84" width="12" height="46" rx="2" fill="url(#stripe)" class="ln" /><line x1="180" y1="84" x2="180" y2="76" class="ln" /></g>
+              <!-- flames -->
+              <g class="flame f1"><path d="M120 77 c-8 -6 -6 -16 0 -24 c6 8 8 18 0 24z" fill="#ffb703" /><path d="M120 76 c-4 -3 -3 -9 0 -13 c3 4 4 10 0 13z" fill="#fff3b0" /></g>
+              <g class="flame f2"><path d="M150 67 c-8 -6 -6 -16 0 -24 c6 8 8 18 0 24z" fill="#ffb703" /><path d="M150 66 c-4 -3 -3 -9 0 -13 c3 4 4 10 0 13z" fill="#fff3b0" /></g>
+              <g class="flame f3"><path d="M180 77 c-8 -6 -6 -16 0 -24 c6 8 8 18 0 24z" fill="#ffb703" /><path d="M180 76 c-4 -3 -3 -9 0 -13 c3 4 4 10 0 13z" fill="#fff3b0" /></g>
+              <circle class="glow" cx="150" cy="60" r="46" />
+            </svg>
+          </div>
+
+          <p class="scroll-cue" id="scrollCue">scroll for more <span>↓</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 24 ============ -->
+    <section class="twentyfour" id="twentyfour">
+      <div class="big24-wrap">
+        <div class="big24 outline">24</div>
+        <div class="big24 fill" id="fill24">24</div>
+      </div>
+      <p class="t24-line" data-reveal>Twenty-four, and almost an <em>Esquire</em>.</p>
+    </section>
+
+    <!-- ============ GALLERY ============ -->
+    <section class="gallery">
+      <h2 class="section-title" data-reveal>The evidence</h2>
+      <p class="section-sub" data-reveal style="--d:.1s">(it choke)</p>
+      <div class="polaroids">
+        <div class="slot"><figure class="polaroid" data-reveal="fly-l" data-speed="-40" style="--r:-6deg">
+          <span class="tape"></span>
+          <button class="pol-media" type="button" data-full="assets/nmeso-1.jpg" aria-label="View exhibit A">
+            <img src="assets/nmeso-1.jpg" alt="Nmeso studying late at night" loading="lazy" />
+          </button>
+          <figcaption><b>Exhibit A</b> Bar prep, well past midnight</figcaption>
+        </figure></div>
+        <div class="slot"><figure class="polaroid" data-reveal="fly-r" data-speed="30" style="--r:5deg">
+          <span class="tape"></span>
+          <button class="pol-media" type="button" data-full="assets/nmeso-2.jpg" aria-label="View exhibit B">
+            <img src="assets/nmeso-2.jpg" alt="Nmeso smiling in her red glasses" loading="lazy" />
+          </button>
+          <figcaption><b>Exhibit B</b> Red frames, full smile</figcaption>
+        </figure></div>
+        <div class="slot"><figure class="polaroid" data-reveal="fly-l" data-speed="-20" style="--r:4deg">
+          <span class="tape"></span>
+          <button class="pol-media" type="button" data-full="assets/nmeso-3.jpg" aria-label="View exhibit C">
+            <img src="assets/nmeso-3.jpg" alt="Nmeso in a white gown at night" loading="lazy" />
+          </button>
+          <figcaption><b>Exhibit C</b> White gown, night out</figcaption>
+        </figure></div>
+        <div class="slot"><figure class="polaroid" data-reveal="fly-r" data-speed="40" style="--r:-5deg">
+          <span class="tape"></span>
+          <button class="pol-media" type="button" data-full="assets/nmeso.mp4" data-video aria-label="Play exhibit D">
+            <video src="assets/nmeso.mp4" muted loop playsinline autoplay preload="metadata"></video>
+          </button>
+          <figcaption><b>Exhibit D</b> Video evidence</figcaption>
+        </figure></div>
+      </div>
+    </section>
+
+    <!-- ============ ENVELOPE ============ -->
+    <section class="mail" id="mail">
+      <div class="paper mail-paper">
+        <h2 class="section-title" data-reveal>A letter for you</h2>
+        <p class="section-sub" data-reveal style="--d:.1s">tap the seal</p>
+        <div class="envelope-stage" data-reveal="rise">
+          <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open the letter">
+            <div class="env-back"></div>
+            <div class="peek">
+              <p class="peek-title">Happy Birthday</p>
+              <span></span><span></span><span></span><span class="short"></span>
+            </div>
+            <div class="env-front"></div>
+            <div class="env-flap"></div>
+            <div class="seal"><svg><use href="#heart" /></svg></div>
+          </div>
+          <svg class="deco m-spark" aria-hidden="true"><use href="#sparkle" /></svg>
+          <svg class="deco m-star" aria-hidden="true"><use href="#star" /></svg>
+          <svg class="deco m-heart" aria-hidden="true"><use href="#heart" /></svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LETTER ============ -->
+    <section class="letter-sec" id="letter" hidden>
+      <article class="letter">
+        <h2 class="letter-dear" id="dear" aria-label="Dear Nmeso,"></h2>
+
+        <p data-reveal>You know, one of the things that frightened me the most about changing schools was finding my own people. I told myself it was impossible, especially because I was in a whole new region with a completely different culture from what I was used to.</p>
+
+        <p data-reveal>But just one week in <span class="hl">Country Club Room 7</span>, and I knew I was dead wrong. I’ve never been so glad to be wrong in my life (and trust me, I hate being wrong), and I have you, <span class="hl">Nwabueze Nmesoma Faith</span>, to thank for that.</p>
+
+        <p data-reveal>Nmeso, my baby, you have no idea how much joy fills my heart every time I think about you. It’s crazy that we’ve only known each other for two years, yet it feels like I’ve known you my whole life. In those two years, I’ve had the opportunity to witness the absolute joy that you are and enjoy one of the best friendships of my life.</p>
+
+        <p class="letter-big" data-reveal="pop">Happy birthday to you, my darling woman.</p>
+
+        <p data-reveal>You already know all these things, but I’ll say them again because there’s nothing wrong with a little ego boost on your birthday.</p>
+
+        <ul class="facts">
+          <li data-reveal="left"><span class="hl">You’re smart</span> (literally going to be an esquire in a few months).</li>
+          <li data-reveal="left" style="--d:.12s"><span class="hl">You’re beautiful</span> (evidence choke).</li>
+          <li data-reveal="left" style="--d:.24s">And <span class="hl">you’re such great fun</span> to be around.</li>
+        </ul>
+
+        <ul class="hopes">
+          <li data-reveal>I hope 24 is kind to you.</li>
+          <li data-reveal style="--d:.15s">I hope this is one of your best birthdays yet.</li>
+          <li data-reveal style="--d:.3s">I hope you get every single one of your heart’s desires.</li>
+          <li data-reveal style="--d:.45s">And I hope I get to remain your friend for many more years to come.</li>
+        </ul>
+
+        <p class="sign" data-reveal="sign"><span>Love, Omozusi</span></p>
+
+        <p class="ps" data-reveal>P.S. Forgive me for not writing 1,000 words. I have the website experience to make up for it. 🫠❤️</p>
+
+        <div class="divider" aria-hidden="true"><svg><use href="#heart" /></svg></div>
+
+        <!-- ============ GIFT FORM (Netlify Forms) ============ -->
+        <form class="gift" id="giftForm" name="gift" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate data-reveal="rise">
+          <input type="hidden" name="form-name" value="gift" />
+          <input type="hidden" name="subject" value="Nmeso's birthday gift details" />
+          <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+
+          <h3 class="gift-title">One last thing…</h3>
+          <p class="gift-sub">Where should your birthday gift land?</p>
+
+          <div class="field">
+            <input id="bank" name="bank" type="text" list="banks" placeholder=" " autocomplete="off" required />
+            <label for="bank">Bank name</label>
+            <small class="err" id="bankErr"></small>
+          </div>
+          <datalist id="banks">
+            <option value="Access Bank"></option><option value="Ecobank"></option><option value="Fidelity Bank"></option>
+            <option value="First Bank"></option><option value="FCMB"></option><option value="GTBank"></option>
+            <option value="Kuda"></option><option value="Moniepoint"></option><option value="OPay"></option>
+            <option value="PalmPay"></option><option value="Polaris Bank"></option><option value="Providus Bank"></option>
+            <option value="Stanbic IBTC"></option><option value="Sterling Bank"></option><option value="UBA"></option>
+            <option value="Union Bank"></option><option value="Wema Bank (ALAT)"></option><option value="Zenith Bank"></option>
+          </datalist>
+
+          <div class="field">
+            <input id="acct" name="account_number" type="text" inputmode="numeric" placeholder=" " autocomplete="off" required />
+            <label for="acct">Account number</label>
+            <span class="count" id="acctCount">0/10</span>
+            <small class="err" id="acctErr"></small>
+          </div>
+
+          <button class="btn btn-solid btn-send" id="sendBtn" type="submit">
+            <span class="send-label">Send</span>
+            <span class="send-loading" aria-hidden="true"><svg><use href="#heart" /></svg></span>
+          </button>
+          <p class="form-msg" id="formMsg" role="status"></p>
+        </form>
+
+        <div class="gift-done" id="giftDone" hidden>
+          <p class="done-kicker">Got it. Something sweet is on its way.</p>
+          <p class="done-title">Happy 24th, Nmeso</p>
+          <p class="done-sub">Now go enjoy your day, Esquire.</p>
+          <button class="btn btn-pill" id="againBtn" type="button">RELIGHT THE CAKE</button>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <!-- ============ LIGHTBOX ============ -->
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lb-close" id="lbClose" type="button" aria-label="Close">✕</button>
+    <div class="lb-inner" id="lbInner"></div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
