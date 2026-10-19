@@ -1,8 +1,8 @@
 # Deploying From Zusi to Nmeso (free)
 
-The site deploys from GitHub so Netlify can also build the email function.
-Dragging the folder onto Netlify Drop would publish the page, but the styled email
-would never be sent, because Drop doesn't run functions.
+The site deploys from GitHub so Netlify also builds the email function.
+Dragging the folder onto Netlify Drop would publish the page, but the gift form
+would fail, because Drop doesn't deploy functions.
 
 ## 1. Connect the repo
 1. Log in at https://app.netlify.com (a free account is fine).
@@ -15,14 +15,10 @@ would never be sent, because Drop doesn't run functions.
 
 Every push to `main` redeploys the site automatically.
 
-## 2. Turn on form detection (one time)
-1. Open **Forms** in the site dashboard and click **Enable form detection**.
-2. Go to **Deploys → Trigger deploy → Deploy site** so Netlify scans the form.
-3. A form called **gift** now shows up under Forms.
-
-## 3. Let the function send the email
-The email goes out through Brevo's SMTP relay (the same setup as the Proposal site),
-to omoeguare@gmail.com only.
+## 2. Let the function send the email
+The form posts to `/.netlify/functions/send-gift`, which emails the details
+through Brevo's SMTP relay (the same setup as the Proposal site) to
+omoeguare@gmail.com only.
 
 1. Log in at https://app.brevo.com and open **SMTP & API → SMTP keys**.
    Generate a key (name it "Nmeso site") and copy it.
@@ -36,19 +32,17 @@ to omoeguare@gmail.com only.
 Keep the key out of the repo and out of chats. If it ever leaks, delete it in Brevo
 and generate a new one.
 
-## 4. Backup notification (optional)
-Netlify can also send its own plain notification:
-**Forms → Form notifications → Add notification → Email notification**,
-form **gift**, email `omoeguare@gmail.com`. It isn't styled, but it doesn't
-depend on Brevo. Every submission is also kept under **Forms → gift**.
-
-## 5. Test before sending her the link
+## 3. Test before sending her the link
 1. Open the live link, go through it, and submit a test bank and account number.
 2. Check omoeguare@gmail.com for "Nmeso's account details for her birthday gift"
    (look in spam and Promotions too).
-3. If nothing arrives: **Logs → Functions → submission-created** shows the error.
-   The usual cause is a missing or mistyped SMTP key.
-4. Delete the test entry under **Forms → gift**.
+3. If the page says "that didn't send", open **Logs → Functions → send-gift**
+   in Netlify. The error there says what went wrong:
+   - `Email is not configured`: an environment variable is missing, or the site
+     wasn't redeployed after adding it.
+   - `Failed to send email`: Brevo rejected the login. Check the SMTP key, and that
+     `EMAIL_USER` matches your Brevo login.
+   - No `send-gift` function listed at all: the site was deployed without functions
+     (for example via Netlify Drop). Deploy from GitHub as in step 1.
 
-Free plan limits: 100 form submissions a month on Netlify and 300 emails a day
-on Brevo, both far more than this needs.
+Brevo's free plan sends 300 emails a day, far more than this needs.

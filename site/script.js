@@ -195,7 +195,7 @@
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openEnvelope(); }
   });
 
-  /* ---------- Gift form (Netlify Forms) ---------- */
+  /* ---------- Gift form (emails Omozusi via the send-gift function) ---------- */
   const form = $('#giftForm'), bank = $('#bank'), acct = $('#acct');
   const count = $('#acctCount'), sendBtn = $('#sendBtn'), msg = $('#formMsg');
   const setErr = (input, text) => {
@@ -230,21 +230,25 @@
     sendBtn.classList.add('loading');
     msg.textContent = '';
     try {
-      const body = new URLSearchParams(new FormData(form)).toString();
       const isLocal = ['localhost', '127.0.0.1'].includes(location.hostname) || location.protocol === 'file:';
       if (isLocal) {
-        // Netlify Forms only exist once deployed; pretend locally so the flow can be previewed.
+        // The plain local server has no functions; pretend so the flow can be previewed.
         await new Promise((r) => setTimeout(r, 900));
       } else {
-        const res = await fetch('/', {
+        const res = await fetch('/.netlify/functions/send-gift', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            bank: bank.value.trim(),
+            account_number: acct.value,
+            bot: form.elements['bot-field'].value,
+          }),
         });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        if (!res.ok) throw new Error(`send-gift ${res.status}: ${await res.text()}`);
       }
       celebrate();
-    } catch (_) {
+    } catch (err) {
+      console.error(err);
       msg.textContent = "Hmm, that didn't send. Check your connection and try again?";
     } finally {
       sendBtn.classList.remove('loading');

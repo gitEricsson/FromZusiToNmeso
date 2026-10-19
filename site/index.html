@@ -301,10 +301,8 @@
 
         <div class="divider" aria-hidden="true"><svg><use href="#heart" /></svg></div>
 
-        <!-- ============ GIFT FORM (Netlify Forms) ============ -->
-        <form class="gift" id="giftForm" name="gift" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate data-reveal="rise">
-          <input type="hidden" name="form-name" value="gift" />
-          <input type="hidden" name="subject" value="Nmeso's birthday gift details" />
+        <!-- ============ GIFT FORM (posts to /.netlify/functions/send-gift) ============ -->
+        <form class="gift" id="giftForm" name="gift" novalidate data-reveal="rise">
           <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
 
           <h3 class="gift-title">One last thing…</h3>

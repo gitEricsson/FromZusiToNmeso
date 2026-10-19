@@ -28,13 +28,13 @@ The page has no framework and no build step.
 - `site/` is plain HTML, CSS and JavaScript. Every drawing (cake, bunting, balloons, camera, envelope) is inline SVG, and the gingham and grid paper are CSS gradients.
 - Motion comes from GSAP 3.12 with ScrollTrigger for the intro and scroll effects, canvas-confetti for the celebrations, and IntersectionObserver for the reveals. With reduced motion switched on, everything still works and simply appears.
 - Fonts are Great Vibes, Fredericka the Great, Caveat and Poppins from Google Fonts.
-- The form is a Netlify Form. Each submission triggers `netlify/functions/submission-created.mjs`, which emails the details to Omozusi over Brevo SMTP using the template in `netlify/email/gift-email.mjs`:
+- The form posts to a Netlify Function, `netlify/functions/send-gift.mjs`, which checks the details and emails them to Omozusi over Brevo SMTP using the template in `netlify/email/gift-email.mjs`:
 
 <p align="center">
   <img src="docs/email.png" width="420" alt="The gift email: a gingham band, a dashed panel showing the bank and account number, and a reminder to check the account name">
 </p>
 
-All of it runs on free tiers: Netlify for hosting, forms and functions, and Brevo for sending the email (300 a day free).
+All of it runs on free tiers: Netlify for hosting and functions, and Brevo for sending the email (300 a day free).
 
 ## Project layout
 
@@ -45,7 +45,7 @@ site/                                the website Netlify publishes
   script.js
   assets/                            photos and the video
 netlify/
-  functions/submission-created.mjs   sends the email on each form submission
+  functions/send-gift.mjs            receives the form and sends the email
   email/gift-email.mjs               HTML and plain-text versions of the email
 scripts/preview-email.mjs            renders the email with sample data
 docs/                                screenshots for this README
@@ -65,7 +65,7 @@ npm run serve
 
 Then open http://localhost:5173. The serve script uses Python's built-in server; `npx serve site` works just as well.
 
-Locally, the form skips the network call and goes straight to the thank-you, since Netlify Forms only exist on a deployed site.
+Locally, the form skips the network call and goes straight to the thank-you, since the plain server can't run the function.
 
 To look at the email without sending anything:
 
@@ -77,7 +77,7 @@ and open http://localhost:5173/email-preview.html.
 
 ## Deploying
 
-See [DEPLOY.md](DEPLOY.md). In short: import this repo into Netlify, turn on form detection, and add `EMAIL_USER` and `EMAIL_PASS` (your Brevo SMTP login and key) as environment variables so the function can send the email. `.env.example` lists them.
+See [DEPLOY.md](DEPLOY.md). In short: import this repo into Netlify and add `EMAIL_USER` and `EMAIL_PASS` (your Brevo SMTP login and key) as environment variables so the function can send the email. `.env.example` lists them.
 
 ## If you're borrowing this
 
