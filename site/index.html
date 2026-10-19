@@ -153,17 +153,22 @@
         <svg class="deco d-star3" aria-hidden="true"><use href="#star" /></svg>
 
         <div class="hero-content">
+          <div class="lights-out" aria-hidden="true"></div>
           <h1 class="hb-title"><span>Happy Birthday</span></h1>
           <p class="hb-name">Nmeso</p>
           <p class="hb-wish" id="wishText">MAKE A WISH!!</p>
-          <div class="blow-wrap"><button class="btn btn-pill" id="blowBtn" type="button"><span aria-hidden="true">≋</span> BLOW THE CANDLES</button></div>
+          <div class="blow-wrap">
+            <button class="btn btn-pill" id="blowBtn" type="button"><span class="blow-label"><span aria-hidden="true">≋</span> BLOW THE CANDLES</span></button>
+            <span class="countdown" id="countdown" aria-live="polite"></span>
+            <p class="blow-hint" id="blowHint" aria-live="polite"></p>
+          </div>
 
           <div class="cake-wrap">
             <svg class="cake" id="cake" viewBox="0 0 300 290" aria-label="Birthday cake with candles">
               <g class="smoke-group">
-                <path class="smoke s1" d="M120 66 q-6 -10 0 -20 q6 -10 0 -20" />
-                <path class="smoke s2" d="M150 56 q-6 -10 0 -20 q6 -10 0 -20" />
-                <path class="smoke s3" d="M180 66 q-6 -10 0 -20 q6 -10 0 -20" />
+                <path class="smoke" d="M120 74c-7-8 7-14 0-22s7-14 0-22c-5-6 5-11 0-17" />
+                <path class="smoke" d="M150 64c-7-8 7-14 0-22s7-14 0-22c-5-6 5-11 0-17" />
+                <path class="smoke" d="M180 74c-7-8 7-14 0-22s7-14 0-22c-5-6 5-11 0-17" />
               </g>
               <!-- plate -->
               <ellipse cx="150" cy="268" rx="132" ry="14" class="ln" fill="#fdfbff" />
@@ -187,11 +192,12 @@
               <g class="candle"><rect x="144" y="74" width="12" height="54" rx="2" fill="url(#stripe)" class="ln" /><line x1="150" y1="74" x2="150" y2="66" class="ln" /></g>
               <g class="candle"><rect x="174" y="84" width="12" height="46" rx="2" fill="url(#stripe)" class="ln" /><line x1="180" y1="84" x2="180" y2="76" class="ln" /></g>
               <!-- flames -->
-              <g class="flame f1"><path d="M120 77 c-8 -6 -6 -16 0 -24 c6 8 8 18 0 24z" fill="#ffb703" /><path d="M120 76 c-4 -3 -3 -9 0 -13 c3 4 4 10 0 13z" fill="#fff3b0" /></g>
-              <g class="flame f2"><path d="M150 67 c-8 -6 -6 -16 0 -24 c6 8 8 18 0 24z" fill="#ffb703" /><path d="M150 66 c-4 -3 -3 -9 0 -13 c3 4 4 10 0 13z" fill="#fff3b0" /></g>
-              <g class="flame f3"><path d="M180 77 c-8 -6 -6 -16 0 -24 c6 8 8 18 0 24z" fill="#ffb703" /><path d="M180 76 c-4 -3 -3 -9 0 -13 c3 4 4 10 0 13z" fill="#fff3b0" /></g>
+              <g class="lean"><g class="flame f1"><path d="M120 77 c-8 -6 -6 -16 0 -24 c6 8 8 18 0 24z" fill="#ffb703" /><path d="M120 76 c-4 -3 -3 -9 0 -13 c3 4 4 10 0 13z" fill="#fff3b0" /></g></g>
+              <g class="lean"><g class="flame f2"><path d="M150 67 c-8 -6 -6 -16 0 -24 c6 8 8 18 0 24z" fill="#ffb703" /><path d="M150 66 c-4 -3 -3 -9 0 -13 c3 4 4 10 0 13z" fill="#fff3b0" /></g></g>
+              <g class="lean"><g class="flame f3"><path d="M180 77 c-8 -6 -6 -16 0 -24 c6 8 8 18 0 24z" fill="#ffb703" /><path d="M180 76 c-4 -3 -3 -9 0 -13 c3 4 4 10 0 13z" fill="#fff3b0" /></g></g>
               <circle class="glow" cx="150" cy="60" r="46" />
             </svg>
+            <p class="trick-note" id="trickNote" aria-hidden="true">nice try<svg viewBox="0 0 40 24"><path d="M36 3C25 2 12 6 6 18m0 0-1-7m1 7 7-2" /></svg></p>
           </div>
 
           <p class="scroll-cue" id="scrollCue">scroll for more <span>↓</span></p>

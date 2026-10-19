@@ -12,7 +12,7 @@ A one-page birthday website Omozusi made for Nwabueze Nmesoma Faith (Nmeso) on h
 ## What happens on the page
 
 1. **The card.** A note on a gingham tablecloth: "Hey Nmeso… Omozusi made you something." One tap opens it.
-2. **The cake.** Bunting drops in and "Happy Birthday" writes itself out. *Blow the candles* puts the flames out in a puff of smoke and confetti.
+2. **The cake.** Bunting drops in and "Happy Birthday" writes itself out. *Blow the candles* turns the lights off, counts down while she makes a wish, then she actually blows: into the phone's microphone, or by holding the button. The flames lean and go out one by one in curls of smoke, the middle candle relights itself once ("nice try"), and when it's finally out the lights flicker back on to confetti. The mic only reads loudness and is switched off straight after.
 3. **Twenty-four.** A huge outlined 24 fills with purple as you scroll.
 4. **The evidence.** Photos and a video of her as taped polaroids, labelled Exhibit A to D, because she's about to be called to the Bar. Tap one to see it full size.
 5. **The envelope.** Tap the wax seal: the flap folds back, the letter slides out, and the page carries you down to it.
