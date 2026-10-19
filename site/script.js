@@ -111,11 +111,10 @@
   });
 
   /* ---------- Candles: lights out, make a wish, blow (mic or hold), one trick candle ---------- */
-  const cake = $('#cake'), blowBtn = $('#blowBtn'), blowLabel = $('.blow-label'), wish = $('#wishText'), cue = $('#scrollCue');
+  const cake = $('#cake'), blowBtn = $('#blowBtn'), wish = $('#wishText'), cue = $('#scrollCue');
   const hero = $('.hero'), heroContent = $('.hero-content'), blowWrap = $('.blow-wrap');
   const countdown = $('#countdown'), hint = $('#blowHint'), trickNote = $('#trickNote');
   const flames = $$('.flame', cake), leans = $$('.lean', cake), smokes = $$('.smoke', cake);
-  const IDLE_LABEL = blowLabel.innerHTML;
   const DURABILITY = [0.7, 1.25, 0.95]; // seconds of steady breath each candle takes
   const TRICK_DURABILITY = 0.5;
   // idle → dark (countdown) → blowing → between → trick → done
@@ -177,7 +176,7 @@
   };
 
   const showBlowPrompt = () => {
-    hint.textContent = mic ? 'into your phone, or hold the button' : 'press and hold the button';
+    hint.textContent = mic ? 'into your phone, or press and hold the circle' : 'press and hold the circle';
     hint.classList.add('show');
   };
   const progress = () => (state === 'trick'
@@ -190,6 +189,7 @@
     lastT = now;
     const input = Math.max(holding ? 1 : 0, micLevel());
     breath += (input - breath) * (input > breath ? .35 : .12);
+    blowBtn.style.setProperty('--b', breath.toFixed(2));
     leans.forEach((el, i) => {
       const b = lit[i] ? breath : 0;
       el.style.setProperty('--lean', (b * (22 + i * 5) + (Math.random() - .5) * b * 16).toFixed(1));
@@ -205,7 +205,7 @@
       blowBtn.style.setProperty('--p', progress());
     }
     if (state === 'blowing' && !hint.dataset.nudged && now - blowStart > 7000 && breath < .1) {
-      hint.textContent = mic ? 'a little harder, or hold the button' : 'press and hold the button';
+      hint.textContent = mic ? 'a little harder, or hold the circle' : 'press and hold the circle';
       hint.dataset.nudged = '1';
     }
     requestAnimationFrame(loop);
@@ -256,9 +256,10 @@
     trickNote.classList.remove('show');
     hint.classList.remove('show');
     blowBtn.classList.remove('holdable', 'holding');
-    blowBtn.style.removeProperty('--p');
+    blowBtn.style.removeProperty('--b');
     blowBtn.disabled = true;
-    blowLabel.textContent = 'CANDLES OUT';
+    blowBtn.classList.add('gone');
+    blowWrap.classList.add('collapsed');
     leans.forEach((el) => { el.style.removeProperty('--lean'); el.style.removeProperty('--squash'); });
     await wait(800);
     hero.classList.remove('dark');
@@ -276,7 +277,8 @@
     flames.forEach((f) => f.classList.add('out'));
     setLight();
     blowBtn.disabled = true;
-    blowLabel.textContent = 'CANDLES OUT';
+    blowBtn.classList.add('gone');
+    blowWrap.classList.add('collapsed');
     wish.textContent = 'WISH SEALED. NO TAKE-BACKS.';
     celebrateCake();
   };
@@ -304,9 +306,9 @@
     }
     if (state !== 'dark') return;
     countdown.textContent = '';
+    blowBtn.classList.add('holdable', 'round');
+    blowBtn.setAttribute('aria-label', 'Hold to blow out the candles');
     blowWrap.classList.remove('counting');
-    blowLabel.textContent = 'HOLD TO BLOW';
-    blowBtn.classList.add('holdable');
     wish.textContent = 'NOW BLOW';
     state = 'blowing';
     blowStart = performance.now();
@@ -323,10 +325,11 @@
     flames.forEach((f) => { f.classList.remove('out'); restart(f, 'relit'); });
     setLight();
     hero.classList.remove('dark', 'lights-on');
-    blowWrap.classList.remove('counting');
+    blowWrap.classList.remove('counting', 'collapsed');
     blowBtn.disabled = false;
-    blowBtn.classList.remove('holdable', 'holding');
-    blowLabel.innerHTML = IDLE_LABEL;
+    blowBtn.classList.remove('holdable', 'holding', 'round', 'gone');
+    blowBtn.style.removeProperty('--p');
+    blowBtn.setAttribute('aria-label', 'Blow the candles');
     trickNote.classList.remove('show');
     hint.classList.remove('show');
     delete hint.dataset.nudged;
