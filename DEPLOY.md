@@ -21,32 +21,34 @@ Every push to `main` redeploys the site automatically.
 3. A form called **gift** now shows up under Forms.
 
 ## 3. Let the function send the email
-The email goes out from a Gmail account you control, to omoeguare@gmail.com.
+The email goes out through Brevo's SMTP relay (the same setup as the Proposal site),
+to omoeguare@gmail.com only.
 
-1. On that Gmail account, turn on 2-Step Verification
-   (Google Account → Security).
-2. Create an app password at https://myaccount.google.com/apppasswords
-   (name it "Nmeso site"). Google shows a 16-character password once.
-3. In Netlify: **Site configuration → Environment variables → Add a variable**,
-   and add these yourself:
-   - `GMAIL_USER`: the Gmail address you're sending from
-   - `GMAIL_APP_PASSWORD`: the 16-character app password
-   - `NOTIFY_TO` (optional): defaults to `omoeguare@gmail.com`
-4. **Deploys → Trigger deploy → Deploy site** so the function picks them up.
+1. Log in at https://app.brevo.com and open **SMTP & API → SMTP keys**.
+   Generate a key (name it "Nmeso site") and copy it.
+2. In Netlify: **Site configuration → Environment variables → Add a variable**,
+   and add these yourself (`.env.example` lists them):
+   - `EMAIL_USER`: your Brevo login email, also used as the sender
+   - `EMAIL_PASS`: the Brevo SMTP key
+   - `YOUR_EMAIL` (optional): defaults to `omoeguare@gmail.com`
+3. **Deploys → Trigger deploy → Deploy site** so the function picks them up.
+
+Keep the key out of the repo and out of chats. If it ever leaks, delete it in Brevo
+and generate a new one.
 
 ## 4. Backup notification (optional)
 Netlify can also send its own plain notification:
 **Forms → Form notifications → Add notification → Email notification**,
 form **gift**, email `omoeguare@gmail.com`. It isn't styled, but it doesn't
-depend on Gmail. Every submission is also kept under **Forms → gift**.
+depend on Brevo. Every submission is also kept under **Forms → gift**.
 
 ## 5. Test before sending her the link
 1. Open the live link, go through it, and submit a test bank and account number.
 2. Check omoeguare@gmail.com for "Nmeso's account details for her birthday gift"
    (look in spam and Promotions too).
 3. If nothing arrives: **Logs → Functions → submission-created** shows the error.
-   The usual cause is a missing or mistyped app password.
+   The usual cause is a missing or mistyped SMTP key.
 4. Delete the test entry under **Forms → gift**.
 
-Free plan limits: 100 form submissions a month, and Gmail sends up to
-500 emails a day, so both are far more than this needs.
+Free plan limits: 100 form submissions a month on Netlify and 300 emails a day
+on Brevo, both far more than this needs.

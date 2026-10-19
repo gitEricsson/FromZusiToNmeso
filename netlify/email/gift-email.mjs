@@ -42,26 +42,29 @@ const formatWhen = (date) =>
     hour: 'numeric', minute: '2-digit', hour12: true,
   }).format(date);
 
-export function renderGiftEmail({ bank, account, submittedAt = new Date(), siteUrl = '' }) {
-  const when = formatWhen(submittedAt);
-  const site = siteUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
-  const b = escapeHtml(bank);
-  const a = escapeHtml(account);
+const siteHost = (siteUrl) => siteUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
 
-  const subject = `Nmeso's account details for her birthday gift`;
-  const preheader = `${bank}, ${account}. Sent ${when}.`;
+const rule = () => `<tr><td style="padding:0 36px;"><div style="border-top:1px dashed ${C.lav};font-size:0;line-height:0;">&nbsp;</div></td></tr>`;
 
-  const label = (text) =>
-    `<div style="font-family:${SANS};font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:${C.violet};margin:0 0 6px;">${text}</div>`;
+const footer = (siteUrl) => {
+  const host = siteHost(siteUrl);
+  return `<tr>
+          <td align="center" style="padding:22px 36px 30px;">
+            <div style="font-family:${SERIF};font-style:italic;font-size:20px;color:${C.purple};margin:0 0 6px;"><span style="color:${C.violet};">&#9825;</span> Happy 24th, Nmeso</div>
+            ${host ? `<div style="font-family:${SANS};font-size:12px;color:${C.muted};">Sent automatically from <a href="${escapeHtml(siteUrl)}" style="color:${C.purple};text-decoration:underline;">${escapeHtml(host)}</a></div>` : ''}
+          </td>
+        </tr>`;
+};
 
-  const html = `<!doctype html>
+// Shared page: tinted background, paper card with gingham bands top and bottom.
+const layout = ({ title, preheader, rows }) => `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
 <meta name="supported-color-schemes" content="light">
-<title>${escapeHtml(subject)}</title>
+<title>${escapeHtml(title)}</title>
 </head>
 <body style="margin:0;padding:0;background:${C.page};">
 <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:${C.page};">${escapeHtml(preheader)}</div>
@@ -70,27 +73,53 @@ export function renderGiftEmail({ bank, account, submittedAt = new Date(), siteU
     <td align="center" style="padding:32px 12px;">
       <table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:560px;background:${C.paper};border-radius:14px;overflow:hidden;box-shadow:0 18px 40px -24px rgba(59,10,79,.45);">
         <tr><td>${gingham(4)}</td></tr>
-        <tr>
+        ${rows}
+        <tr><td>${gingham(2)}</td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
+</html>`;
+
+const intro = ({ kicker, heading, body }) => `<tr>
           <td style="padding:34px 36px 6px;">
-            <div style="font-family:${SERIF};font-style:italic;font-size:15px;color:${C.purple};margin:0 0 6px;">From the birthday site</div>
-            <h1 style="font-family:${SERIF};font-weight:normal;font-size:30px;line-height:1.2;color:${C.plum};margin:0 0 12px;">Nmeso sent her account details</h1>
-            <p style="font-family:${SANS};font-size:15px;line-height:1.6;color:${C.muted};margin:0;">She read the letter and filled in the gift form on ${escapeHtml(when)}. Here's where her gift should go.</p>
+            <div style="font-family:${SERIF};font-style:italic;font-size:15px;color:${C.purple};margin:0 0 6px;">${kicker}</div>
+            <h1 style="font-family:${SERIF};font-weight:normal;font-size:30px;line-height:1.2;color:${C.plum};margin:0 0 12px;">${heading}</h1>
+            <p style="font-family:${SANS};font-size:15px;line-height:1.6;color:${C.muted};margin:0;">${body}</p>
           </td>
-        </tr>
+        </tr>`;
+
+export function renderGiftEmail({ bank, account, submittedAt = new Date(), siteUrl = '' }) {
+  const when = formatWhen(submittedAt);
+  const host = siteHost(siteUrl);
+  const subject = `Nmeso's account details for her birthday gift`;
+
+  const label = (text) =>
+    `<div style="font-family:${SANS};font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:${C.violet};margin:0 0 6px;">${text}</div>`;
+
+  const html = layout({
+    title: subject,
+    preheader: `${bank}, ${account}. Sent ${when}.`,
+    rows: `${intro({
+      kicker: 'From the birthday site',
+      heading: 'Nmeso sent her account details',
+      body: `She read the letter and filled in the gift form on ${escapeHtml(when)}. Here's where her gift should go.`,
+    })}
         <tr>
           <td style="padding:24px 36px 8px;">
             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${C.tint};border:1.5px dashed ${C.lav};border-radius:12px;">
               <tr>
                 <td style="padding:22px 24px 18px;">
                   ${label('Bank')}
-                  <div style="font-family:${SERIF};font-size:24px;line-height:1.25;color:${C.plum};">${b}</div>
+                  <div style="font-family:${SERIF};font-size:24px;line-height:1.25;color:${C.plum};">${escapeHtml(bank)}</div>
                 </td>
               </tr>
               <tr><td style="padding:0 24px;"><div style="border-top:1px solid ${C.lav};font-size:0;line-height:0;">&nbsp;</div></td></tr>
               <tr>
                 <td style="padding:18px 24px 22px;">
                   ${label('Account number')}
-                  <div style="font-family:${MONO};font-size:30px;line-height:1.2;letter-spacing:4px;color:${C.plum};font-weight:700;">${a}</div>
+                  <div style="font-family:${MONO};font-size:30px;line-height:1.2;letter-spacing:4px;color:${C.plum};font-weight:700;">${escapeHtml(account)}</div>
                 </td>
               </tr>
             </table>
@@ -101,22 +130,9 @@ export function renderGiftEmail({ bank, account, submittedAt = new Date(), siteU
             <p style="font-family:${SANS};font-size:13px;line-height:1.6;color:${C.muted};margin:0;">Check that the account name on the transfer screen says Nwabueze Nmesoma Faith before you send.</p>
           </td>
         </tr>
-        <tr>
-          <td style="padding:0 36px;"><div style="border-top:1px dashed ${C.lav};font-size:0;line-height:0;">&nbsp;</div></td>
-        </tr>
-        <tr>
-          <td align="center" style="padding:22px 36px 30px;">
-            <div style="font-family:${SERIF};font-style:italic;font-size:20px;color:${C.purple};margin:0 0 6px;"><span style="color:${C.violet};">&#9825;</span> Happy 24th, Nmeso</div>
-            ${site ? `<div style="font-family:${SANS};font-size:12px;color:${C.muted};">Sent automatically from <a href="${escapeHtml(siteUrl)}" style="color:${C.purple};text-decoration:underline;">${escapeHtml(site)}</a></div>` : ''}
-          </td>
-        </tr>
-        <tr><td>${gingham(2)}</td></tr>
-      </table>
-    </td>
-  </tr>
-</table>
-</body>
-</html>`;
+        ${rule()}
+        ${footer(siteUrl)}`,
+  });
 
   const text = [
     'Nmeso sent her account details',
@@ -129,7 +145,7 @@ export function renderGiftEmail({ bank, account, submittedAt = new Date(), siteU
     'Check that the account name on the transfer screen says Nwabueze Nmesoma Faith before you send.',
     '',
     'Happy 24th, Nmeso',
-    site ? `Sent automatically from ${site}` : '',
+    host ? `Sent automatically from ${host}` : '',
   ].join('\n');
 
   return { subject, html, text };

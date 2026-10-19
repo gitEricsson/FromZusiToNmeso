@@ -1,6 +1,6 @@
 // Netlify runs a function with this exact name after every verified form submission.
-// It sends the styled gift email through Gmail. Set GMAIL_USER and GMAIL_APP_PASSWORD
-// (and optionally NOTIFY_TO) in Site configuration → Environment variables.
+// It emails the gift details to Omozusi over Brevo SMTP (same setup as the Proposal site).
+// Set EMAIL_USER, EMAIL_PASS and optionally YOUR_EMAIL in Site configuration → Environment variables.
 import nodemailer from 'nodemailer';
 import { renderGiftEmail } from '../email/gift-email.mjs';
 
@@ -8,9 +8,9 @@ export const handler = async (event) => {
   const { payload } = JSON.parse(event.body || '{}');
   if (!payload || payload.form_name !== 'gift') return { statusCode: 200, body: 'ignored' };
 
-  const { GMAIL_USER, GMAIL_APP_PASSWORD, NOTIFY_TO = 'omoeguare@gmail.com', URL: siteUrl = '' } = process.env;
-  if (!GMAIL_USER || !GMAIL_APP_PASSWORD) {
-    console.error('GMAIL_USER or GMAIL_APP_PASSWORD is not set, so the styled email was not sent.');
+  const { EMAIL_USER, EMAIL_PASS, YOUR_EMAIL = 'omoeguare@gmail.com', URL: siteUrl = '' } = process.env;
+  if (!EMAIL_USER || !EMAIL_PASS) {
+    console.error('EMAIL_USER or EMAIL_PASS is not set, so the gift email was not sent.');
     return { statusCode: 200, body: 'email not configured' };
   }
 
@@ -21,17 +21,25 @@ export const handler = async (event) => {
     siteUrl,
   });
 
-  const transport = nodemailer.createTransport({
-    service: 'gmail',
-    auth: { user: GMAIL_USER, pass: GMAIL_APP_PASSWORD },
+  const transporter = nodemailer.createTransport({
+    host: 'smtp-relay.brevo.com',
+    port: 2525,
+    secure: false,
+    auth: { user: EMAIL_USER, pass: EMAIL_PASS },
   });
-  await transport.sendMail({
-    from: `"Nmeso's birthday site" <${GMAIL_USER}>`,
-    to: NOTIFY_TO,
-    subject,
-    html,
-    text,
-  });
+
+  try {
+    await transporter.sendMail({
+      from: `"Nmeso's birthday site" <${EMAIL_USER}>`,
+      to: YOUR_EMAIL,
+      subject,
+      html,
+      text,
+    });
+  } catch (error) {
+    console.error('Error sending email:', error);
+    return { statusCode: 500, body: 'Failed to send email' };
+  }
 
   return { statusCode: 200, body: 'sent' };
 };

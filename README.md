@@ -28,13 +28,13 @@ The page has no framework and no build step.
 - `site/` is plain HTML, CSS and JavaScript. Every drawing (cake, bunting, balloons, camera, envelope) is inline SVG, and the gingham and grid paper are CSS gradients.
 - Motion comes from GSAP 3.12 with ScrollTrigger for the intro and scroll effects, canvas-confetti for the celebrations, and IntersectionObserver for the reveals. With reduced motion switched on, everything still works and simply appears.
 - Fonts are Great Vibes, Fredericka the Great, Caveat and Poppins from Google Fonts.
-- The form is a Netlify Form. Each submission triggers `netlify/functions/submission-created.mjs`, which emails the details to Omozusi through Gmail using the template in `netlify/email/gift-email.mjs`:
+- The form is a Netlify Form. Each submission triggers `netlify/functions/submission-created.mjs`, which emails the details to Omozusi over Brevo SMTP using the template in `netlify/email/gift-email.mjs`:
 
 <p align="center">
   <img src="docs/email.png" width="420" alt="The gift email: a gingham band, a dashed panel showing the bank and account number, and a reminder to check the account name">
 </p>
 
-All of it runs on free tiers: Netlify for hosting, forms and functions, and a Gmail account to send from.
+All of it runs on free tiers: Netlify for hosting, forms and functions, and Brevo for sending the email (300 a day free).
 
 ## Project layout
 
@@ -77,11 +77,11 @@ and open http://localhost:5173/email-preview.html.
 
 ## Deploying
 
-See [DEPLOY.md](DEPLOY.md). In short: import this repo into Netlify, turn on form detection, and add `GMAIL_USER` and `GMAIL_APP_PASSWORD` as environment variables so the function can send the email.
+See [DEPLOY.md](DEPLOY.md). In short: import this repo into Netlify, turn on form detection, and add `EMAIL_USER` and `EMAIL_PASS` (your Brevo SMTP login and key) as environment variables so the function can send the email. `.env.example` lists them.
 
 ## If you're borrowing this
 
-The photos and video in `site/assets` are personal. Swap in your own, change the letter in `site/index.html`, and point `NOTIFY_TO` at your inbox.
+The photos and video in `site/assets` are personal. Swap in your own, change the letter in `site/index.html`, and point `YOUR_EMAIL` at your inbox.
 
 ---
 
