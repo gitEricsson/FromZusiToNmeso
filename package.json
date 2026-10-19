@@ -1,0 +1,12 @@
+{
+  "name": "from-zusi-to-nmeso",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "serve": "python -m http.server 5173 --directory site",
+    "email:preview": "node scripts/preview-email.mjs"
+  },
+  "dependencies": {
+    "nodemailer": "^10.1.7"
+  }
+}
